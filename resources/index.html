@@ -19,10 +19,10 @@
       <noscript>This site just doesn't work, period, without JavaScript</noscript>
 
       <ul id="list" class="ui-sortable">
-
+        <!-- List items will be added here dynamically -->
       </ul>
       <br />
-
+      <!-- Add new item form -->
       <form action="" id="add-new" method="post">
         <input type="text" id="new-list-item-text" name="new-list-item-text" />
         <input type="submit" id="add-new-submit" name="add-new-submit" value="Add" class="button" />
@@ -33,10 +33,13 @@
   </div>
 </body>
 <script>
+  // call function when the page loads
   document.addEventListener("DOMContentLoaded", function () {
     fetchItems(); // Load items on page load
     enableEditing();
   });
+
+  // Get all the items request
   function fetchItems() {
     fetch("code.php?action=fetch") // Send identifier
       .then(response => response.json())
@@ -76,6 +79,7 @@
       .catch(error => console.error("Error fetching items:", error));
   }
 
+  // Add new item request
   $(document).ready(function () {
     $("#add-new").submit(function (event) {
       event.preventDefault(); // Prevent default form submission
@@ -97,6 +101,7 @@
     });
   });
 
+  // Enable editing for list items
   function enableEditing() {
     document.querySelectorAll(".editable").forEach(span => {
       span.addEventListener("click", function () {
@@ -155,6 +160,7 @@
     });
   }
 
+  // Save edited item request
   function saveEdit(id, newText, input, span, saveButton) {
     fetch("code.php", {
       method: "POST",
@@ -178,6 +184,7 @@
       .catch(error => console.error("Error updating item:", error));
   }
 
+  // Handle done button click
   document.addEventListener("DOMContentLoaded", function () {
     document.addEventListener("click", function (event) {
       if (event.target.classList.contains("donetab")) {
@@ -257,6 +264,7 @@
       .catch(error => console.error("Fetch error:", error));
   }
 
+  // Handle delete button click
   document.addEventListener("click", function (event) {
     if (event.target.classList.contains("deletetab")) {
       let deleteButton = event.target;
@@ -289,7 +297,7 @@
     }
   });
 
-
+// Drag and drop functionality
   document.addEventListener("DOMContentLoaded", function () {
     const list = document.getElementById("list");
 
@@ -356,6 +364,7 @@
           .catch(error => console.error("Error updating order:", error));
     });
 
+    // Get the closest element below the cursor
     function getDragAfterElement(container, y) {
         const draggableElements = [...container.querySelectorAll("li:not(.dragging)")];
 

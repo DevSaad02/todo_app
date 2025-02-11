@@ -19,7 +19,7 @@ if (isset($_GET["action"]) && $_GET["action"] === "fetch") {
 }
 
 
-
+// Add new item to the list 
 if (isset($_POST["new-list-item-text"])) {
 
     $description = trim($_POST["new-list-item-text"]);
@@ -47,7 +47,7 @@ if (isset($_POST["new-list-item-text"])) {
     $conn->close();
 }
 
-
+// Update an existing item
 if (isset($_POST["action"]) && $_POST["action"] === "update" && isset($_POST["id"]) && isset($_POST["newText"])) {
     // Update an existing item
     $id = intval($_POST["id"]);
@@ -69,6 +69,7 @@ if (isset($_POST["action"]) && $_POST["action"] === "update" && isset($_POST["id
     exit();
 }
 
+// Mark an item as done
 if (isset($_POST["action"]) && $_POST["action"] === "mark_done" && isset($_POST["id"])) {
     $id = intval($_POST["id"]);
 
@@ -86,6 +87,7 @@ if (isset($_POST["action"]) && $_POST["action"] === "mark_done" && isset($_POST[
     exit;
 }
 
+// Update the list color
 if (isset($_POST["action"]) && $_POST["action"] == "update_color" && isset($_POST["id"]) && isset($_POST["color"])) {
     $id = intval($_POST["id"]);
     $color = trim($_POST["color"]);
@@ -103,6 +105,7 @@ if (isset($_POST["action"]) && $_POST["action"] == "update_color" && isset($_POS
     exit;
 }
 
+// Delete an item
 if (isset($_POST["action"]) && $_POST["action"] == "delete" && isset($_POST["id"])) {
     $id = intval($_POST["id"]);
 
@@ -153,7 +156,7 @@ if (isset($_POST["action"]) && $_POST["action"] == "delete" && isset($_POST["id"
 
 $data = json_decode(file_get_contents("php://input"), true);
 
-
+// Update item positions
 if (isset($data["action"]) && $data["action"] === "update_positions" && isset($data["order"])) {
 
     $conn->begin_transaction(); // Start transaction
