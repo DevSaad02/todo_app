@@ -6,9 +6,9 @@
         "version": "latest",
         "port": 3306,
         "mysqlRootPassword": "root",
-        "mysqlDatabase": "mydb",
-        "mysqlUser": "user",
-        "mysqlPassword": "password"
+        "mysqlDatabase": "todo_app",
+        "mysqlUser": "root",
+        "mysqlPassword": "admin"
       }
     },
     "forwardPorts": [8000, 3306],

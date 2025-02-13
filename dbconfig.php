@@ -1,6 +1,6 @@
 <?php 
 // Database connection
-$conn = new mysqli("localhost", "root", "admin", "todo_app");
+$conn = new mysqli("127.0.0.1", "root", "admin", "todo_app");
 
 // Check for connection errors
 if ($conn->connect_error) {
